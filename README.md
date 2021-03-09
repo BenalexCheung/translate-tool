@@ -4,6 +4,17 @@
 
 ## 后端设计
 
+### URL
+
+文字翻译： https://translate.google.cn/?sl=en&tl=zh-CN&op=translate
+
+https://translate.google.com/?hl=zh-CN&sl=hr&tl=zh-CN&text=apple&op=translate
+
+文档翻译： https://translate.google.cn/?sl=en&tl=zh-CN&op=docs
+
+https://translate.googleusercontent.com/translate_f
+
+
 ### 日志配置
 
 ```
@@ -26,12 +37,34 @@ func GetJson() {
 
 ### 调用Google翻译API方式
 
-有道翻译：http://api.microsofttranslator.com/v2/Http.svc/Translate?appId=AFC76A66CF4F434ED080D245C30CF1E71C22959C&from=&to=en&text=老季博客
-``` XML
-<string xmlns="http://schemas.microsoft.com/2003/10/Serialization/">Old season blog</string>
+Google翻译：http://translate.google.cn/translate_a/single?client=gtx&dt=t&dj=1&ie=UTF-8&sl=auto&tl=zh_TW&q=calculate
+``` JSON
+{
+    "sentences": [
+        {
+            "trans": "計算",
+            "orig": "calculate",
+            "backend": 10
+        }
+    ],
+    "src": "en",
+    "confidence": 0.9609375,
+    "spell": {},
+    "ld_result": {
+        "srclangs": [
+            "en"
+        ],
+        "srclangs_confidences": [
+            0.9609375
+        ],
+        "extended_srclangs": [
+            "en"
+        ]
+    }
+}
 ```
 
-### 调用Google翻译API方式
+### 调用有道翻译API方式
 
 有道翻译：http://fanyi.youdao.com/translate?&doctype=json&type=ZH_CN2EN&i=你吃饭了吗
 ``` JSON
