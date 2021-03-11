@@ -14,8 +14,8 @@ type transInfo struct {
 		Orig    string `json:"orig"`
 		Backend int    `json:"backend"`
 	} `json:"sentences"`
-	Src        string `json:"src"`
-	Confidence int    `json:"confidence"`
+	Src        string  `json:"src"`
+	Confidence float32 `json:"confidence"`
 }
 
 type LocalTranslate struct {

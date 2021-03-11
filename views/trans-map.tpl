@@ -1,7 +1,7 @@
  
-{{if .transMap}}
+{{if .TransMap}}
 
-{{range $key, $value := .transMap}}
+{{range $key, $value := .TransMap}}
     <option value="{{$key}}">{{$value}}</option>
 {{end}}
 

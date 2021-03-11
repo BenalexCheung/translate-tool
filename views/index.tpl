@@ -24,20 +24,24 @@
 
 <body>
     <div class="well well-sm">
-        <h3>Pantum 翻译</h3>
+        <h3><a class="button2" href="/" role="" text-decoration:none>Pantum 翻译</a></h3>
     </div>
 
     <div class="container">
         <form id="postForm" class="form-group" action="/?sl=en&tl=zh-CN&op=docs" method="get">
-            <button type="submit" name="op" value="translate" class="btn button3"><span
-                    class="glyphicon glyphicon glyphicon-font"></span>
-                文字</button>
-            <button type="submit" name="op" value="docs" class="btn button3"><span
-                    class="glyphicon glyphicon-file"></span> 文档</button>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn button3" id="label1">
+                    <input type="radio" id="trans" name="op" value="translate" {{if .IsDocs}}{{else}}checked="checked"{{end}}/>
+                    <span class="glyphicon glyphicon glyphicon-font"></span> 文字
+                </label>
+                <label class="btn button3" id="label2">
+                    <input type="radio" id="docs" name="op" value="docs" {{if .IsDocs}}checked="checked"{{else}}{{end}}/>
+                    <span class="glyphicon glyphicon-file"></span> 文档
+                </label>
+            </div>
             <br><br>
 
             {{.LayoutContent}}
-
         </form>
     </div>
 
