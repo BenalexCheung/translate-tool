@@ -5,6 +5,7 @@ go 1.13
 require github.com/beego/beego/v2 v2.0.1
 
 require (
+	github.com/360EntSecGroup-Skylar/excelize/v2 v2.3.2
 	github.com/Unknwon/goconfig v0.0.0-20200908083735-df7de6a44db8 // indirect
 	github.com/astaxie/beedb v0.0.0-20141221130223-1732292dfde4
 	github.com/astaxie/beego v1.12.3

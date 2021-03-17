@@ -11,13 +11,14 @@ import (
 // Entries Struct
 type Entries struct {
 	Id      int       `json:"id,omitempty"  orm:"column(id)"`
-	Created time.Time `json:"create_time,omitempty"  orm:"column(create_time)"`
-	Updated time.Time `json:"update_time,omitempty"  orm:"column(update_time)"`
+	Created time.Time `json:"create_time,omitempty"  orm:"column(create_time);type(datetime);null"`
+	Updated time.Time `json:"update_time,omitempty"  orm:"column(update_time);type(datetime);null"`
 	En      string    `json:"en,omitempty"  orm:"column(en);type(text);unique"`
 	De      string    `json:"de,omitempty"  orm:"column(de);type(text);null"`
 	Fr      string    `json:"fr,omitempty"  orm:"column(fr);type(text);null"`
-	Zh_CN   string    `json:"zh_cn,omitempty"  orm:"column(zh_cn);type(text);null"`
-	Zh_TW   string    `json:"zh_tw,omitempty"  orm:"column(zh_tw);type(text);null"`
+	Zh_CN   string    `json:"zh-CN,omitempty"  orm:"column(zh-CN);type(text);null"`
+	Zh_TW   string    `json:"zh-TW,omitempty"  orm:"column(zh-TW);type(text);null"`
+	Pt_PT   string    `json:"pt-PT,omitempty"  orm:"column(pt-PT);type(text);null"`
 }
 
 func init() {
@@ -43,21 +44,24 @@ func GetAll() (entries []*Entries) {
 	return
 }
 
-func GetEntry(sl string, tl string, text string) (entry string) {
+func GetEntry(sl string, tl string, text string) (entry string, err error) {
 	o := GetLink()
 	rs := o.Raw("SELECT `"+tl+"` FROM `entries` "+
 		"WHERE `"+sl+"`=?", text)
-	err := rs.QueryRow(&entry)
+	err = rs.QueryRow(&entry)
 	fmt.Printf("ERR: %v\n", err)
 	return
 }
 
-func GetEntryById(id int) (entry *Entries) {
+func GetEntryByKey(key string) (*Entries, error) {
 	o := GetLink()
-	entry = &Entries{Id: id}
-	err := o.Read(entry)
-	fmt.Printf("ERR: %v\n", err)
-	return
+	entry := &Entries{En: key}
+	err := o.Read(entry, "en")
+	if err != nil {
+		fmt.Printf("ERR: %v\n", err)
+		return nil, err
+	}
+	return entry, err
 }
 
 func SaveEntry(entry Entries) (id int64) {
@@ -67,9 +71,9 @@ func SaveEntry(entry Entries) (id int64) {
 	return
 }
 
-func UpdateEntry(entry Entries) (num int64) {
+func UpdateEntry(entry Entries, col ...string) (num int64) {
 	o := GetLink()
-	num, err := o.Update(&entry)
+	num, err := o.Update(&entry, col...)
 	fmt.Printf("NUM: %d, ERR: %v\n", num, err)
 	return
 }

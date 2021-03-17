@@ -161,7 +161,7 @@
         var fd = new FormData();
         fd.append("file_name", fileName);
         fd.append("file_path", filePath);
-        fd.append("op", "translate");
+        fd.append("op", "convert");
         $.ajax({
             url: window.location.href.split("?")[0] + "convert",
             type: "POST",
@@ -171,6 +171,30 @@
             success: function (data) {
                 console.info(data);
                 download(data.file_path, data.file_name)
+            },
+            error: function (data) {
+                console.warn(data);
+            }
+        });
+        return false;
+    }
+    function loadFile() {
+        if (filePath == "") {
+            alert("请先选择文件！")
+            return
+        }
+        var fd = new FormData();
+        fd.append("file_name", fileName);
+        fd.append("file_path", filePath);
+        fd.append("op", "loading");
+        $.ajax({
+            url: window.location.href.split("?")[0] + "convert",
+            type: "POST",
+            data: fd,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.info(data);
             },
             error: function (data) {
                 console.warn(data);

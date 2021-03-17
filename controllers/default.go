@@ -49,7 +49,7 @@ func (c *MainController) Post() {
 	log.Println(p)
 
 	if p.op == "docs" {
-		saveDocs(c, p)
+		uploadDocs(c, p)
 	} else if p.op == "translate" {
 		c.Ctx.Input.Bind(&p.sl, "sl")
 		c.Ctx.Input.Bind(&p.tl, "tl")
@@ -74,7 +74,7 @@ func transText(c *MainController, p params) {
 	c.ServeJSON()
 }
 
-func saveDocs(c *MainController, p params) {
+func uploadDocs(c *MainController, p params) {
 	f, h, err := c.GetFile("file")
 	if err != nil {
 		c.Data["json"] = map[string]string{"msg": "上传文件失败", "code": "10"}
@@ -85,9 +85,9 @@ func saveDocs(c *MainController, p params) {
 	//验证后缀名是否符合要求
 	ext := path.Ext(h.Filename)
 	var AllowExtMap map[string]bool = map[string]bool{
-		".xls":  true,
+		// ".xls":  true,
 		".xlsx": true,
-		".csv":  true,
+		// ".csv":  true,
 	}
 
 	if _, ok := AllowExtMap[ext]; !ok {
