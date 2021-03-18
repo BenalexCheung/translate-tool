@@ -152,6 +152,9 @@
                 contentType: false,
                 success: function (data) {
                     console.info(data);
+                    if (data.code == 0) {
+                        download(data.file_path, data.file_name)
+                    }
                 },
                 error: function (data) {
                     console.warn(data);
@@ -182,6 +185,9 @@
                 contentType: false,
                 success: function (data) {
                     console.info(data);
+                    if (data.code == 0) {
+                        download(data.file_path, data.file_name)
+                    }
                 },
                 error: function (data) {
                     console.warn(data);
