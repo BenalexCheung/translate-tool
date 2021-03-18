@@ -17,9 +17,12 @@ pack: build
 	cp -fr static $(APP_PATH)
 	cp -fr conf $(APP_PATH)
 	cp -fr db $(APP_PATH)
+
+build-docker: pack
 	cp Dockerfile $(APP_PATH)
 	cd $(APP_PATH)
-	docker build -t pantum/translate-tool:v0.1 .
+	sudo docker build -t pantum/translate-tool:v0.1 .
+	sudo docker save -o translate-tool.docker pantum/translate-tool
 
 clean:
 	rm -rf ./build translateTool
