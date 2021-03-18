@@ -1,5 +1,8 @@
-<script src="https://cdn.bootcss.com/bootstrap-filestyle/1.2.3/bootstrap-filestyle.min.js"></script>
+<script src="/static/js/bootstrap-filestyle.min.js"></script>
+<script src="/static/js/ladda-bootstrap/spin.min.js"></script>
+<script src="/static/js/ladda-bootstrap/ladda.min.js"></script>
 <script>
+    // Ladda.bind('input[type=submit]');
     function download(href, filename = '') {
         var ul = document.querySelector("ul");
         const a = document.createElement('a')
@@ -128,78 +131,96 @@
     });
 </script>
 <script>
-    function transFile() {
-        if (filePath == "") {
-            alert("请先选择文件！")
-            return
-        }
-        var fd = new FormData();
-        fd.append("file_name", fileName);
-        fd.append("file_path", filePath);
-        fd.append("op", "translate");
-        $.ajax({
-            url: window.location.href.split("?")[0] + "convert",
-            type: "POST",
-            data: fd,
-            processData: false,
-            contentType: false,
-            success: function (data) {
-                console.info(data);
-                download(data.file_path, data.file_name)
-            },
-            error: function (data) {
-                console.warn(data);
+    $(function () {
+        $('#trans-file').click(function (e) {
+            if (filePath == "") {
+                alert("请先选择文件！")
+                return
             }
+            e.preventDefault();
+            var fd = new FormData();
+            fd.append("file_name", fileName);
+            fd.append("file_path", filePath);
+            fd.append("op", "translate");
+            var l = Ladda.create(this);
+            l.start();
+            $.ajax({
+                url: window.location.href.split("?")[0] + "convert",
+                type: "POST",
+                data: fd,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.info(data);
+                },
+                error: function (data) {
+                    console.warn(data);
+                },
+                complete: function () {
+                    l.stop();
+                }
+            });
+            return false;
         });
-        return false;
-    }
-    function convertFile() {
-        if (filePath == "") {
-            alert("请先选择文件！")
-            return
-        }
-        var fd = new FormData();
-        fd.append("file_name", fileName);
-        fd.append("file_path", filePath);
-        fd.append("op", "convert");
-        $.ajax({
-            url: window.location.href.split("?")[0] + "convert",
-            type: "POST",
-            data: fd,
-            processData: false,
-            contentType: false,
-            success: function (data) {
-                console.info(data);
-                download(data.file_path, data.file_name)
-            },
-            error: function (data) {
-                console.warn(data);
+        $('#convert-file').click(function (e) {
+            if (filePath == "") {
+                alert("请先选择文件！")
+                return
             }
+            e.preventDefault();
+            var fd = new FormData();
+            fd.append("file_name", fileName);
+            fd.append("file_path", filePath);
+            fd.append("op", "convert");
+            var l = Ladda.create(this);
+            l.start();
+            $.ajax({
+                url: window.location.href.split("?")[0] + "convert",
+                type: "POST",
+                data: fd,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.info(data);
+                },
+                error: function (data) {
+                    console.warn(data);
+                },
+                complete: function () {
+                    l.stop();
+                }
+            });
+            return false;
         });
-        return false;
-    }
-    function loadFile() {
-        if (filePath == "") {
-            alert("请先选择文件！")
-            return
-        }
-        var fd = new FormData();
-        fd.append("file_name", fileName);
-        fd.append("file_path", filePath);
-        fd.append("op", "loading");
-        $.ajax({
-            url: window.location.href.split("?")[0] + "convert",
-            type: "POST",
-            data: fd,
-            processData: false,
-            contentType: false,
-            success: function (data) {
-                console.info(data);
-            },
-            error: function (data) {
-                console.warn(data);
+        $('#load-file').click(function (e) {
+            if (filePath == "") {
+                alert("请先选择文件！")
+                return
             }
+            e.preventDefault();
+            var fd = new FormData();
+            fd.append("file_name", fileName);
+            fd.append("file_path", filePath);
+            fd.append("op", "loading");
+            var l = Ladda.create(this);
+            l.start();
+            $.ajax({
+                url: window.location.href.split("?")[0] + "convert",
+                type: "POST",
+                data: fd,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.info(data);
+                },
+                error: function (data) {
+                    console.warn(data);
+                },
+                complete: function () {
+                    l.stop();
+                }
+            });
+            return false;
         });
-        return false;
-    }
+    });
 </script>
