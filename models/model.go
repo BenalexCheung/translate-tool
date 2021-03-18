@@ -14,11 +14,22 @@ type Entries struct {
 	Created time.Time `json:"create_time,omitempty"  orm:"column(create_time);type(datetime);null"`
 	Updated time.Time `json:"update_time,omitempty"  orm:"column(update_time);type(datetime);null"`
 	En      string    `json:"en,omitempty"  orm:"column(en);type(text);unique"`
-	De      string    `json:"de,omitempty"  orm:"column(de);type(text);null"`
 	Fr      string    `json:"fr,omitempty"  orm:"column(fr);type(text);null"`
+	De      string    `json:"de,omitempty"  orm:"column(de);type(text);null"`
+	It      string    `json:"it,omitempty"  orm:"column(it);type(text);null"`
+	Ja      string    `json:"ja,omitempty"  orm:"column(ja);type(text);null"`
+	Ko      string    `json:"ko,omitempty"  orm:"column(ko);type(text);null"`
+	Pt_PT   string    `json:"pt-PT,omitempty"  orm:"column(pt-PT);type(text);null"`
+	Ru      string    `json:"ru,omitempty"  orm:"column(ru);type(text);null"`
+	Es      string    `json:"es,omitempty"  orm:"column(es);type(text);null"`
+	Ar      string    `json:"ar,omitempty"  orm:"column(ar);type(text);null"`
+	He      string    `json:"he,omitempty"  orm:"column(he);type(text);null"`
+	Tr      string    `json:"tr,omitempty"  orm:"column(tr);type(text);null"`
+	Pl      string    `json:"pl,omitempty"  orm:"column(pl);type(text);null"`
+	Ro_RO   string    `json:"ro-RO,omitempty"  orm:"column(ro-RO);type(text);null"`
+	Bg_BG   string    `json:"bg-BG,omitempty"  orm:"column(bg-BG);type(text);null"`
 	Zh_CN   string    `json:"zh-CN,omitempty"  orm:"column(zh-CN);type(text);null"`
 	Zh_TW   string    `json:"zh-TW,omitempty"  orm:"column(zh-TW);type(text);null"`
-	Pt_PT   string    `json:"pt-PT,omitempty"  orm:"column(pt-PT);type(text);null"`
 }
 
 func init() {

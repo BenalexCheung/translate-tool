@@ -99,6 +99,8 @@ RU2ZH_CN 俄语　 　中文
 SP2ZH_CN 西语　 　中文
 ```
 
+语言支持：https://cloud.google.com/translate/docs/languages?hl=zh-cn
+
 ## 数据库设计
 
 ### 简单的数据库信息
