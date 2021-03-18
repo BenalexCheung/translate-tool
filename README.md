@@ -1,8 +1,18 @@
-# translateTool
+# translate-tool
 
-## 界面设计
+用于文字的在线翻译以及文件的离线翻译
 
-## 后端设计
+## 1 界面设计
+
+主界面：
+
+![image](https://user-images.githubusercontent.com/25890736/111608633-66c76880-8814-11eb-904e-2f3545a8967c.png)
+
+文件翻译界面：
+
+![image](https://user-images.githubusercontent.com/25890736/111609091-e81efb00-8814-11eb-866c-f971e1702dc7.png)
+
+## 2 后端设计
 
 ### URL
 
@@ -101,7 +111,7 @@ SP2ZH_CN 西语　 　中文
 
 语言支持：https://cloud.google.com/translate/docs/languages?hl=zh-cn
 
-## 数据库设计
+## 3 数据库设计
 
 ### 简单的数据库信息
 
